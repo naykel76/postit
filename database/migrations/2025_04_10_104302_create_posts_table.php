@@ -10,17 +10,16 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            // $table->string('route_prefix')->nullable();
-            // $table->boolean('is_category')->nullable()->default(0);
+            $table->string('route_prefix')->nullable();
+            $table->boolean('is_category')->nullable()->default(0);
             $table->string('title');
             $table->string('slug');
             $table->mediumText('intro')->nullable();
             $table->mediumText('headline')->nullable();
             $table->longText('body')->nullable();
-            // $table->string('image_name')->nullable();
-            // $table->json('config')->nullable();
-            // $table->string('layout')->nullable();
-            // $table->integer('sort_order')->nullable()->default(0);
+            $table->string('image_name')->nullable();
+            $table->json('extras')->nullable();
+            $table->string('layout')->nullable();
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });

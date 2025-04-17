@@ -19,7 +19,8 @@ class PostFactory extends Factory
             'title' => fake()->sentence(),
             'intro' => fake()->paragraph(),
             'headline' => fake()->paragraph(),
-            'body' => fake()->paragraphs(3, true),
+            // 'body' => fake()->paragraphs(3, true),
+            'body' => fake()->randomHtml(),
         ];
     }
 
@@ -30,13 +31,14 @@ class PostFactory extends Factory
         );
     }
 
-    // public function released(?Carbon $date = null): self
-    // {
-    //     return $this->state(
-    //         fn (array $attr) => [
-    //             'published_at' => $date ?? Carbon::now(),
-    //             'released_at' => $date ?? Carbon::now(),
-    //         ]
-    //     );
-    // }
+    public function contentExample(): self
+    {
+        return $this->state(
+            fn (array $attr) => [
+                'title' => 'Super Awesome Page Title',
+                'intro' => 'This is the lead paragraph. The text is slightly larger and bolder than the rest of your body text. The lead paragraph should clearly and concisely describe what the user will expect from the page contents.',
+                'body' => 'This is the body text. The body text is the main content of your page. It should be clear and concise, providing all the necessary information to the user.',
+            ]
+        );
+    }
 }

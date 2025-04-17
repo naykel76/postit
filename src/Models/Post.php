@@ -4,6 +4,7 @@ namespace Naykel\Postit\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Naykel\Gotime\Enums\PublishedStatus;
 use Naykel\Postit\Database\Factories\PostFactory;
 use Spatie\Sluggable\HasSlug;
@@ -12,6 +13,8 @@ use Spatie\Sluggable\SlugOptions;
 class Post extends Model
 {
     use HasFactory, HasSlug;
+
+    protected $guarded = [];
 
     protected static function newFactory()
     {
@@ -35,6 +38,18 @@ class Post extends Model
         } else {
             return PublishedStatus::Draft;
         }
+    }
+
+    /**
+     * -----------------------------------------------------------------------
+     * OTHER
+     * ------------------------------------------------------------------------
+     */
+    public function mainImageUrl()
+    {
+        return $this->image_name
+            ? Storage::disk('posts')->url($this->image_name)
+            : url('https://placehold.co/400x300');
     }
 
     public function getSlugOptions(): SlugOptions
