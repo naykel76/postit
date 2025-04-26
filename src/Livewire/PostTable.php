@@ -4,7 +4,6 @@ namespace Naykel\Postit\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use Naykel\Gotime\Enums\PublishedStatus;
 use Naykel\Gotime\Traits\Renderable;
 use Naykel\Gotime\Traits\Sortable;
 use Naykel\Gotime\Traits\WithFormActions;
@@ -15,6 +14,7 @@ class PostTable extends Component
     use Renderable, Sortable, WithFormActions, WithPagination;
 
     protected string $modelClass = Post::class;
+    public string $routePrefix = 'admin.posts';
     public string $pageTitle = 'Posts';
     protected string $layout = 'admin';
     protected string $view = 'postit::post-table';

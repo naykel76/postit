@@ -22,6 +22,15 @@ class Post extends Model
     }
 
     /**
+     * Defines the layout a page will use when the show method is called
+     */
+    const LAYOUTS = [
+        'post-default' => 'Default Single Column',
+        'post-with-side-image' => 'Post With Side Image',
+        'post-with-banner' => 'Post With Banner',
+    ];
+
+    /**
      * -----------------------------------------------------------------------
      * STATUSES
      * ------------------------------------------------------------------------
