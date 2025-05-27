@@ -19,8 +19,8 @@ class PostFactory extends Factory
             'title' => fake()->sentence(),
             'intro' => fake()->paragraph(),
             'headline' => fake()->paragraph(),
-            // 'body' => fake()->paragraphs(3, true),
             'body' => fake()->randomHtml(),
+            'layout' => fake()->randomElement(['post-default', 'post-with-side-image', 'post-with-banner']),
         ];
     }
 

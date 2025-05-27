@@ -29,14 +29,14 @@ class InstallCommand extends Command
 
     public function addStorageDisk()
     {
-        if (! FMS::stringInFile('./config/filesystems.php', "'posts' => [")) {
+        if (! FMS::stringInFile('./config/filesystems.php', "'content' => [")) {
             FMS::replaceInFile(
                 "'disks' => [",
                 "'disks' => [\n\n\t\t" .
-                    "'posts' => [\n" .
+                    "'content' => [\n" .
                     "\t\t\t'driver' => 'local',\n" .
-                    "\t\t\t'root' => storage_path('app/public/posts'),\n" .
-                    "\t\t\t'url' => env('APP_URL') . '/storage/posts',\n" .
+                    "\t\t\t'root' => storage_path('app/public/content'),\n" .
+                    "\t\t\t'url' => env('APP_URL') . '/storage/content',\n" .
                     "\t\t\t'visibility' => 'public',\n" .
                     "\t\t],",
                 './config/filesystems.php'

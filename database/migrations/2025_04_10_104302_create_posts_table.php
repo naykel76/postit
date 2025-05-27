@@ -17,9 +17,10 @@ return new class extends Migration
             $table->mediumText('intro')->nullable();
             $table->mediumText('headline')->nullable();
             $table->longText('body')->nullable();
-            $table->string('image_name')->nullable();
+            $table->string('image_path')->nullable();
             $table->json('extras')->nullable();
             $table->string('layout')->nullable();
+            $table->integer('position')->nullable()->default(0);
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });

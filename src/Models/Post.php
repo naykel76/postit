@@ -56,8 +56,8 @@ class Post extends Model
      */
     public function mainImageUrl()
     {
-        return $this->image_name
-            ? Storage::disk('posts')->url($this->image_name)
+        return $this->image_path
+            ? Storage::disk('content')->url($this->image_path)
             : url('https://placehold.co/400x300');
     }
 
