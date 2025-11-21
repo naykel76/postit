@@ -3,19 +3,18 @@
 namespace Naykel\Postit;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\Livewire;
 use Naykel\Postit\Commands\InstallCommand;
-use Naykel\Postit\Livewire\PostCreateEdit;
-use Naykel\Postit\Livewire\PostTable;
+use Naykel\Postit\Livewire\Posts\CreateEdit;
+use Naykel\Postit\Livewire\Posts\Index;
 
 class PostitServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->afterResolving(BladeCompiler::class, function () {
-            Livewire::component('post-table', PostTable::class);
-            Livewire::component('post-create-edit', PostCreateEdit::class);
+        $this->app->afterResolving(\Illuminate\View\Compilers\BladeCompiler::class, function () {
+            Livewire::component('posts.create-edit', CreateEdit::class);
+            Livewire::component('posts.index', Index::class);
         });
     }
 

@@ -1,21 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Naykel\Postit\Livewire\PostCreateEdit;
-use Naykel\Postit\Livewire\PostTable;
+use Naykel\Postit\Livewire\Posts\CreateEdit as PostCreateEdit;
+use Naykel\Postit\Livewire\Posts\Index as PostIndex;
 
-Route::middleware(['web'])->prefix('admin/posts')->name('admin.posts')->group(function () {
-    Route::get('/', PostTable::class)->name('.index');
-    Route::get('/create', PostCreateEdit::class)->name('.create');
-    Route::get('/{post:slug}/edit', PostCreateEdit::class)->name('.edit');
+Route::middleware(['web'])->prefix('admin')->name('admin')->group(function () {
+    Route::get('/posts', PostIndex::class)->name('.posts.index');
+    Route::get('/posts/create', PostCreateEdit::class)->name('.posts.create');
+    Route::get('/posts/{post:slug}/edit', PostCreateEdit::class)->name('.posts.edit');
 });
 
-/** ---------------------------------------------------------------------------
- *  =!= MUST RUN LAST =!= MUST RUN LAST =!= MUST RUN LAST =!= MUST RUN LAST =!=
- * ------------------------------------------------------------------------- */
-// /////////////////////////////////////////////////////////////////////////////
-// Route::get('/{post:slug}', ShowPostController::class)->name('posts.show');
-// /////////////////////////////////////////////////////////////////////////////
-/** ---------------------------------------------------------------------------
- *  =!= MUST RUN LAST =!= MUST RUN LAST =!= MUST RUN LAST =!= MUST RUN LAST =!=
- * ------------------------------------------------------------------------- */

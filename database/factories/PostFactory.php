@@ -15,11 +15,15 @@ class PostFactory extends Factory
 
     public function definition(): array
     {
+        $title = fake()->sentence(random_int(3, 10));
+
         return [
-            'title' => fake()->sentence(),
-            'intro' => fake()->paragraph(),
-            'headline' => fake()->paragraph(),
-            'body' => fake()->randomHtml(),
+            'title' => $title,
+            'slug' => strtolower(str_replace(' ', '-', $title)),
+            'intro' => fake()->optional(0.9)->sentence(random_int(1, 3)),
+            'headline' => fake()->optional(0.3)->sentence(random_int(1, 2)),
+            'content' => fake()->paragraphs(random_int(1, 5), true),
+            'published_at' => fake()->optional(0.7)->dateTimeBetween('-6 months', 'now'),
             'layout' => fake()->randomElement(['post-default', 'post-with-side-image', 'post-with-banner']),
         ];
     }
@@ -27,18 +31,7 @@ class PostFactory extends Factory
     public function published(?Carbon $date = null): self
     {
         return $this->state(
-            fn (array $attr) => ['published_at' => $date ?? Carbon::now()]
-        );
-    }
-
-    public function contentExample(): self
-    {
-        return $this->state(
-            fn (array $attr) => [
-                'title' => 'Super Awesome Page Title',
-                'intro' => 'This is the lead paragraph. The text is slightly larger and bolder than the rest of your body text. The lead paragraph should clearly and concisely describe what the user will expect from the page contents.',
-                'body' => 'This is the body text. The body text is the main content of your page. It should be clear and concise, providing all the necessary information to the user.',
-            ]
+            fn(array $attr) => ['published_at' => $date ?? Carbon::now()]
         );
     }
 }
