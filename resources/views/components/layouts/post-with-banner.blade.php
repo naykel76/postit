@@ -1,7 +1,7 @@
-<x-gt-app-layout layout="{{ config('naykel.template') }}" pageTitle="{{ $post->title }}">
-    <div class="banner flex va-c blue" style="background-image: url({{ $post->mainImageUrl() }});">
-        <div class="container maxw-md space-y-1.5">
-            @if(empty($post->config['hide_title']))
+<x-layouts.app title="{{ $post->title }}">
+    <div class="banner flex va-c blue" style="background-image: url({{ $post->featuredImageUrl() }});">
+        <div class="container max-w-md space-y-1.5">
+            @if (empty($post->config['hide_title']))
                 <div class="flex">
                     <h1 class="banner-title bg-blue-09">{{ $post->title }}</h1>
                 </div>
@@ -11,18 +11,18 @@
             @endisset
             @isset($post->headline)
                 <div class="banner-text inline-flex">
-                    <div class="icon-list tick-svg maxw-md">
+                    <div class="icon-list tick-svg max-w-md">
                         {!! $post->headline !!}
                     </div>
                 </div>
             @endisset
         </div>
     </div>
-    @if($post->body)
-        <div class="container maxw-md my-3">
+    @if ($post->body)
+        <div class="container max-w-md my-3">
             <article>
                 {!! $post->body !!}
             </article>
         </div>
     @endif
-</x-gt-app-layout>
+</x-layouts.app>

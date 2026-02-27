@@ -30,14 +30,14 @@
                 <tr wire:key="{{ $item->id }}">
                     <td>{{ $item->title }}</td>
                     <td class="tac">
-                        <div class="rounded inline-flex items-center bdr fw6 txt-xs pxy-025
+                        <div class="rounded inline-flex items-center bdr font-semibold txt-xs pxy-025
                             {{ $item->status()->backgroundColor() }} 
                             {{ $item->status()->textColor() }} 
                             {{ $item->status()->borderColor() }}">
                             {{ $item->status()->label() }}
                         </div>
                     </td>
-                    <td>{{ $item->createdAtDate() }}</td>
+                    <td>{{ $item->createdAt() }}</td>
                     <td class="space-x-075 tar whitespace-nowrap">
                         <x-gt-resource-action action="show" :id="$item->slug" routePrefix="posts" target="_blank" />
                         <x-gt-resource-action action="edit" :id="$item->slug" :$routePrefix />
