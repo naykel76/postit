@@ -16,7 +16,6 @@
     ],
     "require": {
         "php": "^8.2",
-        "livewire/livewire": "^3.6",
         "spatie/laravel-sluggable": "^3.7"
     },
     "require-dev": {

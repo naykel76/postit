@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Naykel\Gotime\Enums\PublishedStatus;
-use Naykel\Gotime\Traits\HasFormattedDates;
 use Naykel\Postit\Database\Factories\PostFactory;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Post extends Model
 {
-    use HasFactory, HasFormattedDates, HasSlug;
+    use HasFactory, HasSlug;
 
     protected $guarded = [];
 
@@ -55,11 +54,11 @@ class Post extends Model
      * OTHER
      * ------------------------------------------------------------------------
      */
-    public function featuredImageUrl()
+    public function mainImageUrl()
     {
-        return $this->image_name
-            ? Storage::disk('media')->url($this->image_name)
-            : url('/svg/placeholder.svg');
+        return $this->image_path
+            ? Storage::disk('content')->url($this->image_path)
+            : url('https://placehold.co/400x300');
     }
 
     public function getSlugOptions(): SlugOptions
@@ -68,6 +67,6 @@ class Post extends Model
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug')
             // if a slug exists leave it alone.
-            ->skipGenerateWhen(fn() => ! empty($this->slug));
+            ->skipGenerateWhen(fn () => ! empty($this->slug));
     }
 }

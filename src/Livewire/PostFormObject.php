@@ -1,6 +1,6 @@
 <?php
 
-namespace Naykel\Postit\Livewire\Posts;
+namespace Naykel\Postit\Livewire;
 
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -14,20 +14,23 @@ class PostFormObject extends Form
 
     protected $storage = [
         'disk' => 'content',
-        'dbColumn' => 'image_path',
+        'dbColumn' => 'image_path'
     ];
 
-    #[Validate('required|string|max:65535')]
-    public string $content = '';
-
-    #[Validate('string|max:255')]
-    public string $headline = '';
-
-    #[Validate('string|max:512')]
-    public string $intro = '';
-
     #[Validate('required|string|max:255')]
-    public string $title = '';
+    public string $title;
+
+    #[Validate('nullable|string|max:255')]
+    public string $intro;
+
+    // #[Validate('nullable|string|max:255')]
+    // public string $headline;
+
+    #[Validate('nullable|string')]
+    public string $body;
+
+    // ?? do i need this? this should be handled by the model
+    public string $slug;
 
     public function init(Post $post): void
     {
